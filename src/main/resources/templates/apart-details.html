@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner details</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+    <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+    <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<table th:object="${apartDetails}" style="width:500px">
+    <tr>
+        <td>Name</td>
+        <td th:text="*{name}"></td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td th:text="*{address}"></td>
+    </tr>
+    <tr>
+        <td>Area</td>
+        <td th:text="*{area}"></td>
+    </tr>
+    <tr>
+        <td>Year build:</td>
+        <td th:text="*{yearBuild}"></td>
+    </tr>
+    <tr>
+        <td>Apartment style</td>
+        <td th:text="*{apartmentStyle}"></td>
+    </tr>
+    <tr>
+        <td>Rent cost:</td>
+        <td th:text="*{rentCost}"></td>
+    </tr>
+    <tr>
+        <td>Utilities cost:</td>
+        <td th:text="*{utilitiesCost}">U</td>
+    </tr>
+    <tr>
+        <td>Apartment purpose</td>
+        <td th:text="*{apartmentPurpose}"></td>
+    </tr>
+    <tr>
+        <td>Rented:</td>
+        <td th:text="*{isRented}"></td>
+    </tr>
+    <tr>
+        <td>Owner:</td>
+        <td><a th:href="@{'/owner/'+${apartDetails.apartmentOwner.ownerId}}">link</a></td>
+    </tr>
+</table>
+</body>
+</html>

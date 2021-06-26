@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner details</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+    <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+    <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<table>
+  <tr th:object="${ownerDetails}">
+    <td th:text="*{firstName}"></td>
+    <td th:text="*{lastName}"></td>
+    <td th:text="*{phoneNumber}"></td>
+    <td th:text="*{email}"></td>
+  </tr>
+</table>
+</hr>
+<div>
+    <a th:href="@{/apart/add(ownerId=${ownerDetails.ownerId})}">Apartment adding form</a>
+</div>
+<table>
+    <tr th:each="apartment,index : ${ownerDetails.apartments}">
+        <td th:text="${index.index+1}"></td>
+        <td th:text="${apartment.name}"></td>
+        <td th:text="${apartment.address}"></td>
+        <td th:text="${apartment.area}">Area:</td>
+        <td th:text="${apartment.yearBuild}">Year:</td>
+        <td th:text="${apartment.apartmentStyle}">Style:</td>
+        <td th:text="${apartment.rentCost}">Rent cost:</td>
+        <td th:text="${apartment.utilitiesCost}">Utilities cost:</td>
+        <td th:text="${apartment.apartmentPurpose}">Purpose:</td>
+        <td>
+            <a th:href="@{/apart/edit(apartIdToEdit=${apartment.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{'/apart/'+${apartment.id}}">Details</a>
+        </td>
+        <td>
+            <a th:href="@{/apart/delete(apartIdToDelete=${apartment.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartments list</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+    <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+    <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<table>
+  <tr th:each="apart,index : ${apartmentList}">
+    <td th:text="${index.index+1}"></td>
+    <td th:text="${apart.name}"></td>
+    <td th:text="${apart.address}"></td>
+    <td th:text="${apart.area}"></td>
+    <td th:text="${apart.apartmentStyle}"></td>
+    <td th:text="${apart.apartmentPurpose}"></td>
+  </tr>
+</table>
+</body>
+</html>

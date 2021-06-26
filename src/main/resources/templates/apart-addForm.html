@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartment adding form</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+    <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+    <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<div>
+    <form th:action="@{/apart/add}" method="post" th:object="${newApart}">
+        <input type="number" hidden th:field="*{id}">
+        <input type="number" hidden th:value="${apartmentOwnerId}" name="ownerId">
+        <div>
+            <label>Name<input type="text" th:field="*{name}"></label>
+        </div>
+        <div>
+            <label>Address<input type="text" th:field="*{address}"></label>
+        </div>
+        <div>
+            <label>Area<input type="text" th:field="*{area}"></label>
+        </div>
+        <div>
+            <label>Year build<input type="text" th:field="*{yearBuild}"></label>
+        </div>
+        <div>
+            <select th:field="*{apartmentStyle}">
+                <option th:each="style : ${stylesList}" th:text="${style}" th:value="${style}"></option>
+            </select>
+        </div>
+        <div>
+            <select th:field="*{apartmentPurpose}">
+                <option th:each="purpose : ${purposeList}" th:text="${purpose}" th:value="${purpose}"></option>
+            </select>
+        </div>
+        <div>
+            <label>Rent cost<input type="text" th:field="*{rentCost}"></label>
+        </div>
+        <div>
+            <label>Utilities cost<input type="text" th:field="*{utilitiesCost}"></label>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>

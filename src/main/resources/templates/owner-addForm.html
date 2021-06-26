@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartment owner adding form</title>
+</head>
+<body>
+<div>
+    <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+    <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+    <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<div>
+    <form th:action="@{/owner/add}" method="post" th:object="${newOwner}">
+        <input type="number" hidden th:field="*{ownerId}">
+        <div>
+            <label>Name<input type="text" th:field="*{firstName}"></label>
+        </div>
+        <div>
+            <label>Surname<input type="text" th:field="*{lastName}"></label>
+        </div>
+        <div>
+            <label>Email<input type="text" th:field="*{email}"></label>
+        </div>
+        <div>
+            <label>Phone number<input type="text" th:field="*{phoneNumber}"></label>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>
