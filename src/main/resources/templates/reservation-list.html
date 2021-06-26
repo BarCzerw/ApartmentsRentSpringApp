@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+<body>
+<div>
+  <a th:href="@{/owner}">Owners</a>
+</div>
+<div>
+  <a th:href="@{/apart}">Apartments</a>
+</div>
+<div>
+  <a th:href="@{/owner/add}">Add new owner</a>
+</div>
+<hr>
+<div>
+  <table>
+    <tr th:each="res,index : ${reservationsList}">
+      <td th:text="${index.index+1}"></td>
+      <td th:text="${res.getApartment().getName()}"></td>
+      <td th:text="${res.getReservationStart()}"></td>
+      <td th:text="${res.getReservationEnd()}"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

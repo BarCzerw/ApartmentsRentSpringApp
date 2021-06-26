@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -29,6 +30,8 @@ public class Apartment {
     @ToString.Exclude
     @JsonBackReference
     private ApartmentOwner apartmentOwner;
+    @OneToMany(mappedBy = "apartment")
+    private List<Reservation> reservations;
     private double rentCost;
     private double utilitiesCost;
     @Enumerated(value = EnumType.STRING)
