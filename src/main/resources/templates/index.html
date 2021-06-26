@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartments Renting</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<ul>
+    <li>
+        <a th:href="@{/}">Hello page</a>
+    </li>
+    <li>
+        <a th:href="@{/apart}">Apartments list</a>
+    </li>
+    <li  >
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/logout}">Logout</a>
+    </li>
+</ul>
+<h3>Welcome to Apartments Renting!</h3>
+<p>Rent apartments from all around the world without provision! Create an account and enjoy searching for your next place to live or work!</p>
+</body>
+</html>
