@@ -39,6 +39,9 @@
         <td th:text="${apartment.utilitiesCost}">Utilities cost:</td>
         <td th:text="${apartment.apartmentPurpose}">Purpose:</td>
         <td>
+            <a th:href="@{/reservation/add(apartmentId=${apartment.id})}">Reserve</a>
+        </td>
+        <td>
             <a th:href="@{/apart/edit(apartIdToEdit=${apartment.id})}">Edit</a>
         </td>
         <td>

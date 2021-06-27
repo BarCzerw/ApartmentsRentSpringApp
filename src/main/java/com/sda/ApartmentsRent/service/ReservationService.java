@@ -4,6 +4,7 @@ import com.sda.ApartmentsRent.model.Apartment;
 import com.sda.ApartmentsRent.model.Reservation;
 import com.sda.ApartmentsRent.repository.ReservationRepository;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @Data
+@Slf4j
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final ApartmentService apartmentService;
@@ -38,8 +40,12 @@ public class ReservationService {
         return reservation.getReservationStart().isBefore(date) && reservation.getReservationEnd().isAfter(date);
     }
 
-    public void addReservation(Reservation reservation) {
-        if (isReservationDateAvailable(reservation.getApartment().getId(), reservation.getReservationStart(), reservation.getReservationEnd())) {
+    public void addReservation(Reservation reservation, long apartmentId){
+        log.info("ReservationService: adding reservation to apartmentId=" + apartmentId);
+        Optional<Apartment> apartmentOptional = apartmentService.getApartmentById(apartmentId);
+        if (apartmentOptional.isPresent() &&
+                isReservationDateAvailable(apartmentOptional.get().getId(),reservation.getReservationStart(), reservation.getReservationEnd())) {
+            reservation.setApartment(apartmentOptional.get());
             reservationRepository.save(reservation);
         }
     }
