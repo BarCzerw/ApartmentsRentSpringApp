@@ -11,11 +11,11 @@
         <a th:href="@{/}">Hello page</a>
     </li>
     <li>
-        <a th:href="@{/apart}">Apartments list</a>
+        <a th:href="@{/apartments}">Apartments list</a>
     </li>
     <li  >
         <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
-        <a sec:authorize="!isAuthenticated()" th:href="@{/logout}">Logout</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
     </li>
 </ul>
 <h3>Welcome to Apartments Renting!</h3>

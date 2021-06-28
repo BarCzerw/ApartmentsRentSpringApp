@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartments Renting</title>
+</head>
+<body>
+<table class="listTable">
+    <tr th:each="apart : ${apartmentList}" class="listElement">
+        <td th:text="${apart.name}"></td>
+        <td th:text="${apart.address}"></td>
+        <td th:text="${apart.area}"></td>
+        <td th:text="${apart.apartmentStyle}"></td>
+        <td th:text="${apart.apartmentPurpose}"></td>
+        <td>
+            <a th:href="@{'/apartments/'+${apart.id}}">Details</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

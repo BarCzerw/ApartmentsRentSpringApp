@@ -1,0 +1,68 @@
+.mainContainer {
+    background-color: #2f80ff;
+    color: aliceblue;
+    margin: 5px;
+    padding: 10px 10px;
+    width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#apartName {
+    font-size: 52px;
+    color: #18534c;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: #18534c 2px solid;
+    margin: 20px;
+}
+
+.description {
+    width: 350px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 0;
+}
+
+.itemDesc {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.itemData {
+    font-size: 14px;
+}
+
+.reservationContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reservationName {
+    font-size: 32px;
+    color: #18534c;
+    display: flex;
+    justify-content: space-around;
+    border-top: #18534c 2px solid;
+    margin: 20px;
+    padding-top: 10px;
+}
+
+.formInput {
+    border: #000000 solid;
+    border-radius: 8px;
+    text-align: center;
+}

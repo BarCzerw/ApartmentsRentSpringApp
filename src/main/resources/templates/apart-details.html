@@ -60,7 +60,7 @@
 </hr>
 <h3>Reservations</h3>
 <table>
-    <tr th:each="res, index : ${apartDetails.getReservations()}">
+    <tr th:each="res, index : ${apartDetails.getReservationsSorted()}">
         <td th:text="${index.index+1}"></td>
         <td th:text="${res.getReservationStart()}"></td>
         <td th:text="${res.getReservationEnd()}"></td>

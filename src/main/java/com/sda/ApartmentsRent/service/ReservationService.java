@@ -8,8 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Data
@@ -37,14 +39,14 @@ public class ReservationService {
     }
 
     private boolean isDateCollidingWithReservation(Reservation reservation, LocalDate date) {
-        return reservation.getReservationStart().isBefore(date) && reservation.getReservationEnd().isAfter(date);
+        return date.isAfter(reservation.getReservationStart()) || date.isBefore(reservation.getReservationEnd());
     }
 
-    public void addReservation(Reservation reservation, long apartmentId){
+    public void addReservation(Reservation reservation, long apartmentId) {
         log.info("ReservationService: adding reservation to apartmentId=" + apartmentId);
         Optional<Apartment> apartmentOptional = apartmentService.getApartmentById(apartmentId);
         if (apartmentOptional.isPresent() &&
-                isReservationDateAvailable(apartmentOptional.get().getId(),reservation.getReservationStart(), reservation.getReservationEnd())) {
+                isReservationDateAvailable(apartmentOptional.get().getId(), reservation.getReservationStart(), reservation.getReservationEnd())) {
             reservation.setApartment(apartmentOptional.get());
             reservationRepository.save(reservation);
         }
@@ -54,4 +56,9 @@ public class ReservationService {
         reservationRepository.delete(reservation);
     }
 
+    public List<Reservation> getAllReservationsSorted() {
+        return getAllReservations().stream()
+                .sorted(Comparator.comparing(Reservation::getReservationStart))
+                .collect(Collectors.toList());
+    }
 }

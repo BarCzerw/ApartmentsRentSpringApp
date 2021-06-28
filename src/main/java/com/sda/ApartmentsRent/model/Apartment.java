@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -42,4 +44,9 @@ public class Apartment {
     public boolean isRentable() {
         return !rented;
     }
+
+    public List<Reservation> getReservationsSorted() {
+        return reservations.stream().sorted(Comparator.comparing(Reservation::getReservationStart)).collect(Collectors.toList());
+    }
+
 }

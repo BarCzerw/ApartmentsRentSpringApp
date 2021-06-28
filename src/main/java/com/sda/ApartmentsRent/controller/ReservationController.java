@@ -17,7 +17,7 @@ public class ReservationController {
 
     @GetMapping
     public String getAllReservations(Model model) {
-        model.addAttribute("reservationsList", reservationService.getAllReservations());
+        model.addAttribute("reservationsList", reservationService.getAllReservationsSorted());
         return "reservation-list";
     }
 

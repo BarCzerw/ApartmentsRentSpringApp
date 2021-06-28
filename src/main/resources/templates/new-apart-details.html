@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${apartDetails.getName()}">Title</title>
+    <link rel="stylesheet" th:href="@{/css/apartdetails.css}">
+</head>
+<body>
+<div class="mainContainer">
+    <div id="apartName" th:text="${apartDetails.getName()}"></div>
+    <div class="description">
+        <div class="item">
+            <div class="itemDesc" th:text="'Address:'"></div>
+            <div class="itemData" th:text="${apartDetails.getAddress()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Area:'"></div>
+            <div class="itemData" th:text="${apartDetails.getArea()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Build in:'"></div>
+            <div class="itemData" th:text="${apartDetails.getYearBuild()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Style:'"></div>
+            <div class="itemData" th:text="${apartDetails.getAddress()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Rent cost:'"></div>
+            <div class="itemData" th:text="${apartDetails.getRentCost()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Utilities cost:'"></div>
+            <div class="itemData" th:text="${apartDetails.getUtilitiesCost()}"></div>
+        </div>
+        <div class="item">
+            <div class="itemDesc" th:text="'Purpose:'"></div>
+            <div class="itemData" th:text="${apartDetails.getApartmentPurpose()}"></div>
+        </div>
+    </div>
+    <div class="reservationContainer">
+        <div class="reservationName" th:text="'Rent this apartment!'"></div>
+        <form class="reservationForm" th:action="@{/reservation/add}" method="post" th:object="${newReservation}">
+            <input type="number" hidden th:field="*{reservationId}">
+            <input type="number" hidden th:value="${apartmentToReserveId}" name="apartmentId">
+            <input class="formInput" type="date" th:field="*{reservationStart}">
+            <input class="formInput" type="date" th:field="*{reservationEnd}">
+            <input class="sendButton" type="submit" value="Reserve">
+        </form>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
