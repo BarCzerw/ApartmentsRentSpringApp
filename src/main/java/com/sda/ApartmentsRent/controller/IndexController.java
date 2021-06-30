@@ -1,7 +1,10 @@
 package com.sda.ApartmentsRent.controller;
 
+import com.sda.ApartmentsRent.exception.InvalidRegisterData;
 import com.sda.ApartmentsRent.model.Apartment;
+import com.sda.ApartmentsRent.model.CreateAccountRequest;
 import com.sda.ApartmentsRent.model.Reservation;
+import com.sda.ApartmentsRent.service.AccountService;
 import com.sda.ApartmentsRent.service.ApartmentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
@@ -20,6 +24,7 @@ import java.util.Optional;
 public class IndexController {
 
     private final ApartmentService apartmentService;
+    private final AccountService accountService;
 
     @GetMapping
     public String getIndexPage() {
@@ -29,6 +34,25 @@ public class IndexController {
     @GetMapping("/login")
     public String getLoginPage() {
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String getRegisterPage(){
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String submitRegisterPage(Model model, CreateAccountRequest request){
+        try{
+            boolean success = accountService.register(request);
+            if(success) {
+                return "redirect:/login";
+            }
+        }catch (InvalidRegisterData ird){
+            model.addAttribute("error_msg", ird.getMessage());
+            model.addAttribute("prev_user", request.getUsername());
+        }
+        return "register";
     }
 
     @GetMapping("/authorized")
